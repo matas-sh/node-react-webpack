@@ -4,7 +4,8 @@
   "description": "simple js server with a single test to learn circle ci",
   "main": "App.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "devDependencies": {
     "chai": "*",
     "mocha": "^7.0.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
