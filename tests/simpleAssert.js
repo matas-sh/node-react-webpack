@@ -11,6 +11,6 @@ it('test pass', () => {
 });
 
 it('test pass', () => {
-    // should fail
+    // should fail - should prevent from merging a pull requests
     expect(testFail).to.equal(testString);
 });
