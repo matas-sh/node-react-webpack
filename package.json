@@ -4,7 +4,7 @@
   "description": "simple js server with a single test to learn circle ci",
   "main": "App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,6 @@
   "homepage": "https://github.com/mataxxx5/demo-build#readme",
   "devDependencies": {
     "chai": "*",
-    "mocha": "*"
+    "mocha": "^7.0.1"
   }
 }

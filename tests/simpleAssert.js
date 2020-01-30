@@ -5,7 +5,12 @@ let testString = 'pass';
 let testPass = 'pass';
 let testFail = 'fail';
 
-// should pass
-expect(testPass).to.equal(testString);
-// should fail
-expect(testFail).to.equal(testString);
+it('test pass', () => {
+    // should pass
+    expect(testPass).to.equal(testString);
+});
+
+it('test pass', () => {
+    // should fail
+    expect(testFail).to.equal(testString);
+});
