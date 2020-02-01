@@ -42,6 +42,7 @@ jobs:
 
       # build and run tests for frontend!
       - run: 
+          name: Running tests and building
           command: |
             cd ./frontend/
             echo testing frontend... 
@@ -51,6 +52,7 @@ jobs:
 
       # run tests for backend!
       - run:
+          name: Running tests
           command: |
             cd ./backend/
             echo testing backend... 
