@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build-frontend:
+  build:
     docker:
       - image: circleci/node:8.11
 
