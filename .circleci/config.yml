@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: circleci/node:8.11
 
-    working_directory: ~/../frontend
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -16,55 +16,25 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "./frontend/package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       
-      - run: yarn install
+      - run:  cd ./frontend/ && yarn install
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # build and run tests!
-      - run: 
-          command: |
-            echo testing frontend... 
-            yarn run test-all
-            echo building frontend...
-            yarn run build
-
-  build-backend:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8.11
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/../backend
-
-    steps:
-      - checkout
+            - ./frontend/node_modules
+          key: v1-frontend-dependencies-{{ checksum "./frontend/package.json" }}
       
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      
-      - run: yarn install
-
+      - run:  cd ./backend/ && yarn install
+        
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ./backend/node_modules
+          key: v1-frontend-dependencies-{{ checksum "./backend/package.json" }}
 
-      # build and run tests!
+      # build and run tests for frontend!
       - run: 
           command: |
             cd ./frontend/
@@ -73,22 +43,9 @@ jobs:
             echo building frontend...
             yarn run build
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
+      # run tests for backend!
       - run:
           command: |
+            cd ./backend/
             echo testing backend... 
             yarn run test-all
