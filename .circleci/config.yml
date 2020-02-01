@@ -35,15 +35,15 @@ jobs:
 
       # build and run tests!
       - run: 
-        command: |
-          cd ./frontend/
-          echo testing frontend... 
-          yarn run test-all
-          echo building frontend...
-          yarn run build
+          command: |
+            cd ./frontend/
+            echo testing frontend... 
+            yarn run test-all
+            echo building frontend...
+            yarn run build
 
       - run:
-        command: |
-          cd ../backend/
-          echo testing backend... 
-          yarn run test-all
+          command: |
+            cd ../backend/
+            echo testing backend... 
+            yarn run test-all
