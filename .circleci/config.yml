@@ -32,7 +32,7 @@ jobs:
       - save_cache:
           paths:
             - ./backend/node_modules
-          key: v1-frontend-dependencies-{{ checksum "./backend/package.json" }}
+          key: v1-backend-dependencies-{{ checksum "./backend/package.json" }}
 
       # build and run tests for frontend!
       - run: 
