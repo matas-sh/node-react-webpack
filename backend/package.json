@@ -4,7 +4,8 @@
   "description": "simple js server with a single test to learn circle ci",
   "main": "App.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest -o",
+    "test-all": "jest",
     "start": "node index.js"
   },
   "repository": {
@@ -20,7 +21,7 @@
   "homepage": "https://github.com/mataxxx5/demo-build#readme",
   "devDependencies": {
     "chai": "*",
-    "mocha": "^7.0.1"
+    "jest": "^25.1.0"
   },
   "dependencies": {
     "express": "^4.17.1"

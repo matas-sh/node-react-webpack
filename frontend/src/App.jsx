@@ -2,7 +2,6 @@ import React from 'react';
 import logo from './logo.jpg';
 import '../style/app.scss';
 
-console.log('why though?');
 function App () {
     return (
         <div className="App">
