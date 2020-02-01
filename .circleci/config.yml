@@ -4,23 +4,14 @@
 #
 version: 2
 jobs:
-  build:
+  build-frontend:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.11
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
+    working_directory: ~/frontend
 
     steps:
       - checkout
-
-      # navigate to frontend
-      - run: cd ./frontend/
       
       # Download and cache dependencies
       - restore_cache:
@@ -39,14 +30,50 @@ jobs:
       # build and run tests!
       - run: 
           command: |
+            cd ./frontend/
             echo testing frontend... 
             yarn run test-all
             echo building frontend...
             yarn run build
 
-      # navigate to backend
-      - run: cd ../backend/
+  build-backend:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.11
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/backend
+
+    steps:
+      - checkout
       
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # build and run tests!
+      - run: 
+          command: |
+            cd ./frontend/
+            echo testing frontend... 
+            yarn run test-all
+            echo building frontend...
+            yarn run build
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -64,5 +91,6 @@ jobs:
       # run tests!
       - run:
           command: |
+            cd ../backend/
             echo testing backend... 
             yarn run test-all
