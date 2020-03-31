@@ -15,7 +15,7 @@ exports[`testing App with Jest snapshot testing 1`] = `
     <br />
     <br />
     <em>
-      Powered by house of clowns
+      Powered by house of clowns!!!
     </em>
   </header>
 </div>
