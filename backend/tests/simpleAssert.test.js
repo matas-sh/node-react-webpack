@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 let testString = 'pass';
-let testPass = 'fail';
+let testPass = 'pass';
 
 // simple assert test to test jest + chai
 it('test pass', () => {
