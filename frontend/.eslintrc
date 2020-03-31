@@ -4,5 +4,6 @@
     "env": {    
         "browser": true,    
         "node": true  
-    }
+    },
+    "linebreak-style": ["error", "windows"]
 }
